@@ -1,34 +1,27 @@
-function newMessageFormView(id, callbacks) {
-	render();
+class MessageForm extends React.Component
+{
+	constructor() {
+		super();
 
-	store.subscribe(function () {
-		render();
-	});
-
-	function render() {
-		ReactDOM.render(
-			(
-				<form onSubmit={submit}>
-					<input type="text" value={store.getState().form.text} onChange={changeText}/>
-					<button>Send</button>
-				</form>
-			),
-			document.getElementById(id)
-		);
+		this.submit = this.submit.bind(this);
+		this.changeText = this.changeText.bind(this);
 	}
 
-	function submit(event) {
+	submit(event) {
 		event.preventDefault();
-
-		callbacks.onSend();
+		this.props.onSend();
 	}
 
-	function changeText(event) {
-		store.dispatch({
-			type: 'CHANGE_FORM_TEXT',
-			payload: {
-				text: event.target.value
-			}
-		});
+	changeText(event) {
+		this.props.onChangeText(event.target.value);
+	}
+
+	render() {
+		return (
+			<form onSubmit={this.submit}>
+				<input type="text" value={this.props.text} onChange={this.changeText}/>
+				<button>Send</button>
+			</form>
+		);
 	}
 }

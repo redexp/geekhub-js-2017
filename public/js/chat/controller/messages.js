@@ -1,8 +1,6 @@
-var states = [];
-
 function messagesController() {
 
-	store.subscribe(function () {
+	/*store.subscribe(function () {
 		states.push(store.getState());
 	});
 
@@ -26,22 +24,20 @@ function messagesController() {
 				}
 			});
 		}
-	});
+	});*/
 
-	jQuery(window).on('popstate', function () {
-		var text = location.href.match(/\w+$/)[0];
 
-		store.dispatch({
-			type: 'CHANGE_FORM_TEXT',
-			payload: {
-				text: text
-			}
-		});
-	});
 
-	store.subscribe(function () {
-		var text = store.getState().form.text;
+	ReactDOM.render(
+		React.createElement(
+			ReactRedux.Provider,
+			{store: store},
+			React.createElement(ConnectedMessagesApp, {
+				onSend: function () {
 
-		history.pushState({text: text}, 'Text is ' + text, '/text/' + text);
-	});
+				}
+			})
+		),
+		document.getElementById('messages-app')
+	);
 }

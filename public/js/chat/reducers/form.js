@@ -2,7 +2,7 @@ function formReducer(form, action) {
 	if (!form) return {text: ''};
 
 	switch (action.type) {
-	case 'CHANGE_FORM_TEXT':
+	case CHANGE_FORM_TEXT:
 		return Object.assign({}, form, {
 			text: action.payload.text
 		});
