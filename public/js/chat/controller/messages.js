@@ -47,23 +47,16 @@ function messagesController() {
 
 	client.onopen = function () {
 		var message = {
-			id: Math.random(),
-			data: {
-				test: 12
-			}
+			type: 'init',
+			user_id: 1
 		};
-
-		callbacks[message.id] = function (data) {
-			clearTimeout(timer);
-			console.log('Response from server', data);
-		};
-
-		var timer = setTimeout(function () {
-			console.error('Server timeout', message);
-			delete callbacks[message.id];
-		}, 3000);
 
 		client.send(JSON.stringify(message));
+
+		client.send(JSON.stringify({
+			type: 'message-all',
+			text: 'hello'
+		}));
 	};
 
 	client.onerror = function (event) {
@@ -71,12 +64,12 @@ function messagesController() {
 	};
 
 	client.onmessage = function (event) {
-		var response = JSON.parse(event.data);
+		var message = JSON.parse(event.data);
 
-		if (callbacks.hasOwnProperty(response.id)) {
-			var callback = callbacks[response.id];
-			callback(response.data);
-			delete callbacks[response.id];
+		switch (message.type) {
+		case 'message':
+			console.log('Message from', message.from_user_id, message.text);
+			break;
 		}
 	};
 }
