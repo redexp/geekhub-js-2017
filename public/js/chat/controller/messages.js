@@ -41,35 +41,9 @@ function messagesController() {
 		document.getElementById('messages-app')
 	);
 
-	var client = new WebSocket('ws://localhost:5000');
+	window.client = new Faye.Client('https://localhost:5000/faye');
 
-	var callbacks = {};
-
-	client.onopen = function () {
-		var message = {
-			type: 'init',
-			user_id: 1
-		};
-
-		client.send(JSON.stringify(message));
-
-		client.send(JSON.stringify({
-			type: 'message-all',
-			text: 'hello'
-		}));
-	};
-
-	client.onerror = function (event) {
-		event;
-	};
-
-	client.onmessage = function (event) {
-		var message = JSON.parse(event.data);
-
-		switch (message.type) {
-		case 'message':
-			console.log('Message from', message.from_user_id, message.text);
-			break;
-		}
-	};
+	client.subscribe('/messages', function (data) {
+		console.log(data);
+	});
 }
