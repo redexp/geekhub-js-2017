@@ -22,10 +22,12 @@ var Messages = function (_React$Component) {
 		value: function render() {
 			var _this2 = this;
 
+			var messages = this.props.messages || [];
+
 			return React.createElement(
 				"ul",
 				{ className: "messages" },
-				this.props.messages.map(function (message) {
+				messages.map(function (message) {
 					return React.createElement(
 						"li",
 						{ key: message.id, className: "message" },

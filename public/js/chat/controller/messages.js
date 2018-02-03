@@ -1,3 +1,5 @@
+// @flow
+
 /**
  * @typedef {{
  *   type: string,
@@ -5,12 +7,14 @@
  * }} Action
  */
 
-function messagesController() {
+function messagesController(ReactDOM, React, App) {
 
 	/**
-	 * @var {string} sergii
+	 * @var {JQueryStatic} sergii
 	 *
 	 */
+
+	sergii.ajax()
 
 	ReactDOM.render(
 		React.createElement(App, null),
@@ -19,26 +23,17 @@ function messagesController() {
 
 	var y = 11;
 
-	try {
-		var x = React.asd('asd', 1);
-	}
-	catch (error) {
-
-	}
+	var x: number = asd('asd', 1);
 
 	/**
 	 * Very helpful function
 	 *
-	 * @param {string} x
-	 * @param {number|string} [y]
-	 * @returns {Action}
-	 * @throws {Error}
 	 */
-	React.asd = function (x, y) {
+	function asd(x: string, y: number) : number {
 		if (!x) {
 			throw new Error('x undefined');
 		}
 
-		return obj;
+		return Number(x);
 	}
 }

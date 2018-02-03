@@ -1,9 +1,11 @@
 class Messages extends React.Component
 {
 	render() {
+		var messages = this.props.messages || [];
+
 		return (
 			<ul className="messages">
-				{this.props.messages.map(message => (
+				{messages.map(message => (
 					<li key={message.id} className="message">
 						{message.text}
 						<button
