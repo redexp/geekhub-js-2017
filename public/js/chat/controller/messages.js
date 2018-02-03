@@ -1,49 +1,44 @@
+/**
+ * @typedef {{
+ *   type: string,
+ *   payload?: Object|string
+ * }} Action
+ */
+
 function messagesController() {
 
-	/*store.subscribe(function () {
-		states.push(store.getState());
-	});
-
-	newMessageFormView('new-message-form', {
-		onSend: function () {
-			store.dispatch({
-				type: 'ADD_MESSAGE_FROM_FORM',
-				payload: {
-					text: store.getState().form.text
-				}
-			});
-		}
-	});
-
-	messagesView('messages', {
-		onDelete: function (message) {
-			store.dispatch({
-				type: 'DELETE_MESSAGE',
-				payload: {
-					id: message.id
-				}
-			});
-		}
-	});*/
-
-
+	/**
+	 * @var {string} sergii
+	 *
+	 */
 
 	ReactDOM.render(
-		React.createElement(
-			ReactRedux.Provider,
-			{store: store},
-			React.createElement(ConnectedMessagesApp, {
-				onSend: function () {
-
-				}
-			})
-		),
-		document.getElementById('messages-app')
+		React.createElement(App, null),
+		document.getElementById('app')
 	);
 
-	window.client = new Faye.Client('https://localhost:5000/faye');
+	var y = 11;
 
-	client.subscribe('/messages', function (data) {
-		console.log(data);
-	});
+	try {
+		var x = React.asd('asd', 1);
+	}
+	catch (error) {
+
+	}
+
+	/**
+	 * Very helpful function
+	 *
+	 * @param {string} x
+	 * @param {number|string} [y]
+	 * @returns {Action}
+	 * @throws {Error}
+	 */
+	React.asd = function (x, y) {
+		if (!x) {
+			throw new Error('x undefined');
+		}
+
+		return obj;
+	}
 }
